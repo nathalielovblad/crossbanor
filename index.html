@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crossbanor Stockholm – Öppettider</title>
+  <meta name="description" content="Aktuella öppettider för Stockholms motorcrossbanor – Uringe, Värmdö, Nynäshamn, Arlanda, Haninge, Upplands Väsby, Botkyrka och Täby.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --or: #E8600A;
+      --or-l: #FFF0E6;
+      --bl: #0A2A4A;
+      --bl-m: #1A4A7A;
+      --white: #ffffff;
+      --bg: #F5F4F1;
+      --card: #ffffff;
+      --border: rgba(0,0,0,0.10);
+      --border-strong: rgba(0,0,0,0.18);
+      --text: #111111;
+      --text-muted: #6B7280;
+      --text-faint: #9CA3AF;
+      --green-bg: #E1F5EE;
+      --green-text: #085041;
+      --gray-bg: #F1EFE8;
+      --gray-text: #5F5E5A;
+      --purple-bg: #EEEDFE;
+      --purple-text: #3C3489;
+      --blue-bg: #E6F1FB;
+      --blue-text: #0C447C;
+      --radius: 10px;
+      --radius-sm: 6px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    /* HEADER */
+    .header {
+      background: var(--bl);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .header-left .label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #6A9ACA; margin-bottom: .2rem; }
+    .header-left .title { font-size: 22px; font-weight: 600; color: #fff; }
+    .header-left .sub { font-size: 12px; color: #8BBAE0; margin-top: .2rem; }
+    .header-right { display: flex; align-items: center; gap: 8px; }
+    .badge { background: var(--or); border-radius: var(--radius-sm); padding: .4rem .9rem; text-align: center; }
+    .badge .n { font-size: 20px; font-weight: 700; color: #fff; line-height: 1; }
+    .badge .s { font-size: 10px; color: #FFD0A8; text-transform: uppercase; letter-spacing: .05em; }
+    .admin-btn {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
+      color: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .admin-btn:hover { background: rgba(255,255,255,.18); }
+    .admin-btn.active { background: var(--or); border-color: var(--or); }
+
+    /* WEEK NAV */
+    .week-nav { display: flex; align-items: center; gap: 6px; margin-bottom: .9rem; }
+    .nav-btn {
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .nav-btn:hover { background: var(--bg); }
+    .week-label { flex: 1; text-align: center; font-size: 14px; font-weight: 600; color: var(--text); }
+    .today-btn { font-size: 12px; padding: 5px 12px; color: var(--or); border-color: var(--or); }
+
+    /* CALENDAR STRIP */
+    .cal-strip { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; margin-bottom: 1rem; }
+    .cal-day {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 5px;
+      min-height: 64px;
+      text-align: center;
+    }
+    .cal-day.today { border: 2px solid var(--or); }
+    .cal-day.has-open { background: var(--or-l); }
+    .cal-day-name { font-size: 10px; color: var(--text-faint); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 2px; }
+    .cal-day-num { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .cal-day.today .cal-day-num { color: var(--or); }
+    .pips { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; }
+    .pip { width: 6px; height: 6px; border-radius: 50%; }
+
+    /* LEGEND */
+    .legend { display: flex; gap: 12px; margin-bottom: .75rem; flex-wrap: wrap; }
+    .leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); }
+    .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* SECTION HEADING */
+    .section-head {
+      font-size: 11px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin: .75rem 0 .6rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-head::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* BANA CARDS */
+    .bana-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; margin-bottom: .75rem; }
+    .bana-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .bana-top { display: flex; align-items: center; gap: 10px; padding: 10px 14px 9px; border-bottom: 1px solid var(--border); }
+    .bana-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .bana-info { flex: 1; min-width: 0; }
+    .bana-name { font-size: 13px; font-weight: 600; }
+    .bana-url { font-size: 11px; color: var(--text-faint); margin-top: 1px; }
+    .bana-status { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+    .status-open { background: var(--green-bg); color: var(--green-text); }
+    .status-closed { background: var(--gray-bg); color: var(--gray-text); }
+    .status-manual { background: var(--or-l); color: #7A3200; }
+    .status-rebuilding { background: #FAEEDA; color: #633806; }
+    .status-gcal { background: var(--blue-bg); color: var(--blue-text); }
+    .bana-slots { padding: 9px 14px; display: flex; flex-direction: column; gap: 5px; }
+    .slot-row { display: flex; align-items: center; gap: 8px; }
+    .slot-date { font-size: 11px; color: var(--text-muted); min-width: 68px; }
+    .slot-time { font-size: 11px; font-weight: 600; border-radius: 4px; padding: 2px 7px; }
+    .slot-open { background: var(--green-bg); color: var(--green-text); }
+    .slot-closed { background: var(--gray-bg); color: var(--gray-text); text-decoration: line-through; }
+    .slot-enduro { background: var(--purple-bg); color: var(--purple-text); }
+    .slot-event { background: var(--blue-bg); color: var(--blue-text); }
+    .slot-title { font-size: 11px; color: var(--text-muted); font-style: italic; }
+    .no-data { font-size: 11px; color: var(--text-faint); font-style: italic; padding: 6px 14px; line-height: 1.5; }
+    .no-data a { color: var(--or); }
+    .bana-note { font-size: 11px; color: var(--text-muted); padding: 6px 14px 0; line-height: 1.5; }
+
+    /* ADMIN PANEL */
+    .admin-panel {
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .admin-panel.show { display: block; }
+    .admin-title { font-size: 13px; font-weight: 600; margin-bottom: .75rem; color: var(--text); }
+    .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: .75rem; }
+    .admin-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .75rem 1rem; }
+    .admin-bname { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: .5rem; display: flex; align-items: center; gap: 6px; }
+    .admin-label { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+    .admin-input {
+      width: 100%; font-size: 12px; padding: 6px 8px;
+      border-radius: var(--radius-sm); border: 1px solid var(--border-strong);
+      background: var(--card); color: var(--text); margin-bottom: 5px;
+    }
+    .admin-row { display: flex; gap: 6px; margin-bottom: 5px; align-items: center; }
+    .admin-row label { font-size: 11px; color: var(--text-muted); min-width: 40px; }
+    .admin-row input, .admin-row select { flex: 1; font-size: 12px; padding: 5px 7px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--card); color: var(--text); }
+    .btn { width: 100%; padding: 6px; font-size: 12px; border-radius: var(--radius-sm); cursor: pointer; margin-top: 4px; border: 1px solid; }
+    .btn-add { border-color: var(--or); color: var(--or); background: transparent; }
+    .btn-add:hover { background: var(--or-l); }
+    .btn-save { border-color: var(--border-strong); color: var(--text-muted); background: transparent; }
+    .btn-save:hover { background: var(--bg); }
+    .ev-list { margin-top: .5rem; display: flex; flex-direction: column; gap: 3px; max-height: 130px; overflow-y: auto; }
+    .ev-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); background: var(--card); border-radius: 4px; padding: 3px 8px; }
+    .ev-item span { flex: 1; }
+    .ev-del { background: none; border: none; color: var(--text-faint); cursor: pointer; font-size: 16px; padding: 0 2px; line-height: 1; }
+    .ev-del:hover { color: #E24B4A; }
+    .save-msg { font-size: 11px; color: var(--text-faint); text-align: right; margin-top: .5rem; min-height: 16px; }
+
+    /* FOOTER */
+    .footer { font-size: 11px; color: var(--text-faint); text-align: center; margin-top: 1.5rem; line-height: 1.6; }
+    .footer a { color: var(--or); text-decoration: none; }
+
+    /* UPDATED TAG */
+    .updated-tag { font-size: 11px; color: var(--text-faint); text-align: right; margin-bottom: .5rem; }
+
+    @media (max-width: 500px) {
+      body { padding: .75rem; }
+      .header { padding: 1rem; }
+      .header-left .title { font-size: 18px; }
+      .cal-day-name { font-size: 9px; }
+      .cal-day-num { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="label">Stockholm MX</div>
+      <div class="title">Crossbanornas öppettider</div>
+      <div class="sub" id="hdr-date"></div>
+    </div>
+    <div class="header-right">
+      <div class="badge">
+        <div class="n" id="open-count">–</div>
+        <div class="s">Öppna idag</div>
+      </div>
+      <button class="admin-btn" id="admin-btn" onclick="toggleAdmin()">&#9881; Admin</button>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-title">&#9881; Administrera manuella banor</div>
+    <div class="admin-grid" id="admin-grid"></div>
+    <div class="save-msg" id="save-msg"></div>
+  </div>
+
+  <!-- WEEK NAV -->
+  <div class="week-nav">
+    <button class="nav-btn" onclick="changeWeek(-1)">&#8249;</button>
+    <span class="week-label" id="week-label"></span>
+    <button class="nav-btn today-btn" onclick="goToday()">Idag</button>
+    <button class="nav-btn" onclick="changeWeek(1)">&#8250;</button>
+  </div>
+
+  <div class="cal-strip" id="cal-strip"></div>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="section-head">Banorna denna veckan</div>
+  <div class="bana-grid" id="bana-grid"></div>
+
+  <div class="updated-tag" id="updated-tag"></div>
+
+  <div class="footer">
+    Data hämtas automatiskt från Uringe, Värmdö, Nynäshamn, Arlanda och Haninge.<br>
+    Upplands Väsby, Botkyrka och Täby uppdateras manuellt.<br>
+    Kontrollera alltid banans egen sida innan du åker.<br><br>
+    <a href="https://crossbanor.se">crossbanor.se</a>
+  </div>
+
+</div>
+
+<script>
+const DAYS = ['Mån','Tis','Ons','Tor','Fre','Lör','Sön'];
+const MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+
+let BANOR = [];
+let manualData = {};
+let adminOpen = false;
+let mon = getMonday(new Date());
+const TODAY = ds(new Date());
+
+function ds(d) { return d.toISOString().slice(0,10); }
+function getMonday(d) {
+  const x = new Date(d);
+  const day = x.getDay();
+  x.setDate(x.getDate() + (day === 0 ? -6 : 1 - day));
+  x.setHours(0,0,0,0);
+  return x;
+}
+function weekNum(d) {
+  const x = new Date(d); x.setHours(0,0,0,0);
+  x.setDate(x.getDate() + 3 - (x.getDay()+6)%7);
+  const w = new Date(x.getFullYear(),0,4);
+  return 1 + Math.round(((x-w)/86400000 - 3 + (w.getDay()+6)%7)/7);
+}
+
+async function loadData() {
+  try {
+    const r = await fetch('oppettider.json?v=' + Date.now());
+    const data = await r.json();
+    BANOR = data.banor;
+    if (data.updated) {
+      document.getElementById('updated-tag').textContent = 'Senast uppdaterad: ' + data.updated;
+    }
+    // Initialize manualData from any manual banor in the JSON
+    BANOR.forEach(b => {
+      if (!manualData[b.id]) {
+        manualData[b.id] = { note: b.note || '', events: [] };
+      }
+    });
+    render();
+  } catch(e) {
+    document.getElementById('bana-grid').innerHTML =
+      '<p style="color:#888;padding:1rem">Kunde inte ladda öppettider. Försök igen senare.</p>';
+  }
+}
+
+function allOpenToday() {
+  return BANOR.filter(b => {
+    const sc = (b.events||[]).find(e => e.date === TODAY && e.open);
+    const mn = (manualData[b.id]?.events||[]).find(e => e.d === TODAY && e.open);
+    return sc || mn;
+  });
+}
+
+function getWeekEvts(b, week) {
+  const wdates = week.map(d => ds(d));
+  const sc = (b.events||[]).filter(e => wdates.includes(e.date));
+  const mn = (manualData[b.id]?.events||[]).filter(e => wdates.includes(e.d));
+  // normalize manual to same shape
+  return [
+    ...sc,
+    ...mn.map(e => ({ date: e.d, start: e.t, end: '', open: e.open, manual: true }))
+  ];
+}
+
+function render() {
+  const now = new Date();
+  document.getElementById('hdr-date').textContent =
+    'Idag: ' + DAYS[(now.getDay()+6)%7] + ' ' + now.getDate() + ' ' + MONTHS[now.getMonth()] + ' ' + now.getFullYear();
+  document.getElementById('open-count').textContent = allOpenToday().length;
+
+  const week = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(mon); d.setDate(d.getDate()+i); week.push(d);
+  }
+  const wn = weekNum(mon);
+  const s = week[0], e = week[6];
+  const sm = MONTHS[s.getMonth()], em = MONTHS[e.getMonth()];
+  document.getElementById('week-label').textContent =
+    'Vecka ' + wn + ' · ' + s.getDate() + (sm !== em ? ' '+sm : '') + '–' + e.getDate() + ' ' + em;
+
+  // Calendar strip
+  const calEl = document.getElementById('cal-strip');
+  calEl.innerHTML = '';
+  week.forEach((d, i) => {
+    const dstr = ds(d);
+    const openBanor = BANOR.filter(b => {
+      const sc = (b.events||[]).find(e => e.date === dstr && e.open);
+      const mn = (manualData[b.id]?.events||[]).find(e => e.d === dstr && e.open);
+      return sc || mn;
+    });
+    const div = document.createElement('div');
+    div.className = 'cal-day' + (dstr===TODAY?' today':'') + (openBanor.length?' has-open':'');
+    div.innerHTML = `<div class="cal-day-name">${DAYS[i].slice(0,3)}</div>` +
+      `<div class="cal-day-num">${d.getDate()}</div>` +
+      `<div class="pips">${openBanor.map(b=>`<div class="pip" style="background:${b.color}"></div>`).join('')}</div>`;
+    calEl.appendChild(div);
+  });
+
+  // Legend
+  document.getElementById('legend').innerHTML = BANOR.map(b =>
+    `<div class="leg"><div class="leg-dot" style="background:${b.color}"></div>${b.name.split(' ')[0]}</div>`
+  ).join('');
+
+  // Bana cards
+  const grid = document.getElementById('bana-grid');
+  grid.innerHTML = '';
+  BANOR.forEach(b => {
+    const evts = getWeekEvts(b, week);
+    const openEvts = evts.filter(e => e.open);
+    const note = manualData[b.id]?.note || b.note || '';
+
+    let statusClass, statusText;
+    if (b.rebuilding) { statusClass = 'status-rebuilding'; statusText = 'Byggs om'; }
+    else if (b.gcal)  { statusClass = 'status-gcal';       statusText = 'Google Cal'; }
+    else if (b.manual && !openEvts.length) { statusClass = 'status-manual'; statusText = 'Manuell'; }
+    else if (openEvts.length) { statusClass = 'status-open'; statusText = 'Öppet ' + openEvts.length + '×'; }
+    else { statusClass = 'status-closed'; statusText = 'Stängt'; }
+
+    let slots = '';
+    if (note) {
+      slots += `<div class="bana-note">ℹ️ ${note}</div>`;
+    }
+
+    const weekMap = {};
+    week.forEach(d => { weekMap[ds(d)] = d; });
+
+    const shown = evts.filter(e => weekMap[e.date]);
+    if (shown.length) {
+      slots += '<div class="bana-slots">';
+      shown.forEach(ev => {
+        const d = weekMap[ev.date];
+        const lbl = DAYS[(d.getDay()+6)%7] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+        const t = ev.start + (ev.end ? '–'+ev.end : '');
+        const cls = ev.enduro_only ? 'slot-enduro' : ev.open ? 'slot-open' : 'slot-closed';
+        const extra = ev.enduro_only ? ' (enduro)' : '';
+        const titleHtml = ev.title ? `<span class="slot-title">${ev.title}</span>` : '';
+        slots += `<div class="slot-row"><span class="slot-date">${lbl}</span><span class="slot-time ${cls}">${t}${extra}</span>${titleHtml}</div>`;
+      });
+      slots += '</div>';
+    } else if (!note) {
+      const msg = b.gcal
+        ? `Se kalender på <a href="https://${b.url}/kalender/" target="_blank">${b.url}</a>`
+        : b.manual
+          ? `Inga tider inlagda. Besök <a href="https://${b.url}" target="_blank">${b.url}</a>`
+          : 'Inga körningar planerade denna veckan.';
+      slots += `<div class="no-data">${msg}</div>`;
+    }
+
+    grid.innerHTML += `
+      <div class="bana-card">
+        <div class="bana-top">
+          <div class="bana-dot" style="background:${b.color}"></div>
+          <div class="bana-info">
+            <div class="bana-name">${b.name}</div>
+            <div class="bana-url">${b.url}</div>
+          </div>
+          <span class="bana-status ${statusClass}">${statusText}</span>
+        </div>
+        ${slots}
+      </div>`;
+  });
+
+  if (adminOpen) renderAdmin();
+}
+
+function toggleAdmin() {
+  adminOpen = !adminOpen;
+  document.getElementById('admin-panel').classList.toggle('show', adminOpen);
+  const btn = document.getElementById('admin-btn');
+  btn.classList.toggle('active', adminOpen);
+  btn.textContent = adminOpen ? '🔓 Admin' : '⚙️ Admin';
+  if (adminOpen) renderAdmin();
+}
+
+function renderAdmin() {
+  const manual = BANOR.filter(b => b.manual || b.rebuilding || b.gcal);
+  document.getElementById('admin-grid').innerHTML = manual.map(b => {
+    const md = manualData[b.id] || { note:'', events:[] };
+    const evList = md.events.length
+      ? md.events.map((ev,i) => `<div class="ev-item"><span>${ev.d} · ${ev.t} · ${ev.open?'Öppet':'Stängt'}</span><button class="ev-del" onclick="delEv('${b.id}',${i})">×</button></div>`).join('')
+      : '<div style="font-size:11px;color:#aaa;padding:3px 0">Inga tillfällen inlagda</div>';
+    return `<div class="admin-card">
+      <div class="admin-bname"><div class="bana-dot" style="background:${b.color}"></div>${b.name}</div>
+      <div class="admin-label">Notis (visas på kortet)</div>
+      <input class="admin-input" id="note-${b.id}" value="${md.note}" placeholder="t.ex. Stängt p.g.a. tävling">
+      <button class="btn btn-save" onclick="saveNote('${b.id}')">Spara notis</button>
+      <div class="admin-label" style="margin-top:.6rem">Lägg till tillfälle</div>
+      <div class="admin-row"><label>Datum</label><input type="date" id="d-${b.id}"></div>
+      <div class="admin-row"><label>Tider</label><input type="text" id="t-${b.id}" placeholder="10:00–14:00"></div>
+      <div class="admin-row"><label>Status</label><select id="s-${b.id}"><option value="open">Öppet</option><option value="closed">Stängt</option></select></div>
+      <button class="btn btn-add" onclick="addEv('${b.id}')">+ Lägg till</button>
+      <div class="ev-list">${evList}</div>
+    </div>`;
+  }).join('');
+}
+
+function saveNote(id) {
+  if (!manualData[id]) manualData[id] = { note:'', events:[] };
+  manualData[id].note = document.getElementById('note-'+id).value;
+  showMsg('Notis sparad');
+  render();
+}
+function addEv(id) {
+  const d = document.getElementById('d-'+id).value;
+  const t = document.getElementById('t-'+id).value;
+  const s = document.getElementById('s-'+id).value;
+  if (!d || !t) { alert('Fyll i datum och tider'); return; }
+  if (!manualData[id]) manualData[id] = { note:'', events:[] };
+  manualData[id].events.push({ d, t, open: s==='open' });
+  manualData[id].events.sort((a,b) => a.d.localeCompare(b.d));
+  document.getElementById('d-'+id).value = '';
+  document.getElementById('t-'+id).value = '';
+  showMsg('Tillfälle sparat');
+  render();
+}
+function delEv(id, i) {
+  manualData[id].events.splice(i, 1);
+  showMsg('Borttaget');
+  render();
+}
+function showMsg(m) {
+  const el = document.getElementById('save-msg');
+  el.textContent = '✓ ' + m;
+  setTimeout(() => el.textContent = '', 4000);
+}
+function changeWeek(dir) { mon.setDate(mon.getDate() + dir*7); render(); }
+function goToday() { mon = getMonday(new Date()); render(); }
+
+loadData();
+</script>
+</body>
+</html>

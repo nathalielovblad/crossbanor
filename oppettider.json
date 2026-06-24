@@ -1,0 +1,89 @@
+{
+  "updated": "2026-06-24",
+  "banor": [
+    {
+      "id": "uringe",
+      "name": "Uringe MX",
+      "url": "uringe.se",
+      "color": "#E8600A",
+      "events": [
+        {"date": "2026-06-24", "start": "16:30", "end": "20:00", "open": true},
+        {"date": "2026-06-27", "start": "10:00", "end": "14:00", "open": true}
+      ]
+    },
+    {
+      "id": "varmdo",
+      "name": "Värmdö MK",
+      "url": "varmdomx.se",
+      "color": "#0F6E56",
+      "events": [
+        {"date": "2026-06-24", "start": "17:00", "end": "20:00", "open": true, "title": "Crosskola"},
+        {"date": "2026-06-25", "start": "17:00", "end": "20:00", "open": true, "title": "Allmän träning"},
+        {"date": "2026-06-27", "start": "10:00", "end": "14:00", "open": true, "title": "Allmän träning"},
+        {"date": "2026-06-30", "start": "17:00", "end": "20:00", "open": true, "title": "Allmän träning"}
+      ]
+    },
+    {
+      "id": "nynashamn",
+      "name": "Nynäshamn MCK",
+      "url": "nynashamnsmck.se",
+      "color": "#534AB7",
+      "events": [
+        {"date": "2026-06-24", "start": "17:00", "end": "20:00", "open": true},
+        {"date": "2026-07-01", "start": "17:00", "end": "20:00", "open": true},
+        {"date": "2026-07-04", "start": "10:00", "end": "14:00", "open": true},
+        {"date": "2026-07-05", "start": "10:00", "end": "14:00", "open": true}
+      ]
+    },
+    {
+      "id": "arlanda",
+      "name": "Arlanda MC",
+      "url": "arlandamc.se",
+      "color": "#D4537E",
+      "events": [
+        {"date": "2026-06-24", "start": "17:00", "end": "20:00", "open": true},
+        {"date": "2026-06-27", "start": "09:00", "end": "14:00", "open": true},
+        {"date": "2026-06-28", "start": "09:00", "end": "15:00", "open": true}
+      ]
+    },
+    {
+      "id": "haninge",
+      "name": "Haninge MK",
+      "url": "haningemotorklubb.se",
+      "color": "#1D9E75",
+      "rebuilding": true,
+      "note": "Crossbanan stängd – byggs om. Endurobanan öppen normala tider.",
+      "events": [
+        {"date": "2026-06-24", "start": "10:00", "end": "14:00", "open": true, "enduro_only": true}
+      ]
+    },
+    {
+      "id": "uvmk",
+      "name": "Upplands Väsby MK",
+      "url": "uvmk.nu",
+      "color": "#185FA5",
+      "gcal": true,
+      "manual": true,
+      "note": "Kalender via Google Calendar – besök uvmk.nu för aktuella tider.",
+      "events": []
+    },
+    {
+      "id": "botkyrka",
+      "name": "Botkyrka MK",
+      "url": "botkyrkamk.se",
+      "color": "#888780",
+      "manual": true,
+      "note": "",
+      "events": []
+    },
+    {
+      "id": "taby",
+      "name": "Täby MK",
+      "url": "tabymk.se",
+      "color": "#888780",
+      "manual": true,
+      "note": "",
+      "events": []
+    }
+  ]
+}
