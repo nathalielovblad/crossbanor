@@ -196,7 +196,7 @@ function getWeekEvts(b, week) {
   const wdates = week.map(d => ds(d));
   const sc = (b.events||[]).filter(e => wdates.includes(e.date));
   const mn = (manualData[b.id]?.events||[]).filter(e => wdates.includes(e.d));
-  return [...sc, ...mn.map(e => ({ date: e.d, start: e.t, end: '', open: e.open, manual: true }))];
+  return [...sc, ...mn.map(e => ({ date: e.d, start: e.t, end: '', title: e.title||'', open: e.open, manual: true }))];
 }
 function render() {
   const now = new Date();
@@ -265,21 +265,37 @@ function renderAdmin() {
   const manual = BANOR.filter(b => b.manual || b.rebuilding || b.gcal);
   document.getElementById('admin-grid').innerHTML = manual.map(b => {
     const md = manualData[b.id] || { note:'', events:[] };
-    const evList = md.events.length ? md.events.map((ev,i) => `<div class="ev-item"><span>${ev.d} · ${ev.t} · ${ev.open?'Öppet':'Stängt'}</span><button class="ev-del" onclick="delEv('${b.id}',${i})">×</button></div>`).join('') : '<div style="font-size:11px;color:#aaa;padding:3px 0">Inga tillfällen inlagda</div>';
-    return `<div class="admin-card"><div class="admin-bname"><div class="bana-dot" style="background:${b.color}"></div>${b.name}</div><div class="admin-label">Notis</div><input class="admin-input" id="note-${b.id}" value="${md.note}" placeholder="t.ex. Stängt p.g.a. tävling"><button class="btn btn-save" onclick="saveNote('${b.id}')">Spara notis</button><div class="admin-label" style="margin-top:.6rem">Lägg till tillfälle</div><div class="admin-row"><label>Datum</label><input type="date" id="d-${b.id}"></div><div class="admin-row"><label>Tider</label><input type="text" id="t-${b.id}" placeholder="10:00–14:00"></div><div class="admin-row"><label>Status</label><select id="s-${b.id}"><option value="open">Öppet</option><option value="closed">Stängt</option></select></div><button class="btn btn-add" onclick="addEv('${b.id}')">+ Lägg till</button><div class="ev-list">${evList}</div></div>`;
+    const evList = md.events.length
+      ? md.events.map((ev,i) => `<div class="ev-item"><span>${ev.d} · ${ev.t}${ev.title?' · '+ev.title:''} · ${ev.open?'Öppet':'Stängt'}</span><button class="ev-del" onclick="delEv('${b.id}',${i})">×</button></div>`).join('')
+      : '<div style="font-size:11px;color:#aaa;padding:3px 0">Inga tillfällen inlagda</div>';
+    return `<div class="admin-card">
+      <div class="admin-bname"><div class="bana-dot" style="background:${b.color}"></div>${b.name}</div>
+      <div class="admin-label">Notis (visas på kortet)</div>
+      <input class="admin-input" id="note-${b.id}" value="${md.note}" placeholder="t.ex. Stängt p.g.a. tävling">
+      <button class="btn btn-save" onclick="saveNote('${b.id}')">Spara notis</button>
+      <div class="admin-label" style="margin-top:.6rem">Lägg till tillfälle</div>
+      <div class="admin-row"><label>Datum</label><input type="date" id="d-${b.id}"></div>
+      <div class="admin-row"><label>Tider</label><input type="text" id="t-${b.id}" placeholder="10:00–14:00"></div>
+      <div class="admin-row"><label>Typ</label><input type="text" id="tt-${b.id}" placeholder="t.ex. Allmän träning"></div>
+      <div class="admin-row"><label>Status</label><select id="s-${b.id}"><option value="open">Öppet</option><option value="closed">Stängt</option></select></div>
+      <button class="btn btn-add" onclick="addEv('${b.id}')">+ Lägg till</button>
+      <div class="ev-list">${evList}</div>
+    </div>`;
   }).join('');
 }
 function saveNote(id) { if (!manualData[id]) manualData[id] = { note:'', events:[] }; manualData[id].note = document.getElementById('note-'+id).value; showMsg('Notis sparad'); render(); }
 function addEv(id) {
   const d = document.getElementById('d-'+id).value;
   const t = document.getElementById('t-'+id).value;
+  const tt = document.getElementById('tt-'+id)?.value || '';
   const s = document.getElementById('s-'+id).value;
   if (!d || !t) { alert('Fyll i datum och tider'); return; }
   if (!manualData[id]) manualData[id] = { note:'', events:[] };
-  manualData[id].events.push({ d, t, open: s==='open' });
+  manualData[id].events.push({ d, t, title: tt, open: s==='open' });
   manualData[id].events.sort((a,b) => a.d.localeCompare(b.d));
   document.getElementById('d-'+id).value = '';
   document.getElementById('t-'+id).value = '';
+  if (document.getElementById('tt-'+id)) document.getElementById('tt-'+id).value = '';
   showMsg('Tillfälle sparat'); render();
 }
 function delEv(id, i) { manualData[id].events.splice(i, 1); showMsg('Borttaget'); render(); }
