@@ -1,88 +1,227 @@
 {
-  "updated": "2026-06-24",
+  "updated": "2026-06-26",
   "banor": [
     {
       "id": "uringe",
       "name": "Uringe MX",
-      "url": "uringe.se",
-      "color": "#E8600A",
-      "events": [
-        {"date": "2026-06-24", "start": "16:30", "end": "20:00", "open": true},
-        {"date": "2026-06-27", "start": "10:00", "end": "14:00", "open": true}
-      ]
-    },
-    {
-      "id": "varmdo",
-      "name": "Värmdö MK",
-      "url": "varmdomx.se",
-      "color": "#0F6E56",
-      "events": [
-        {"date": "2026-06-24", "start": "17:00", "end": "20:00", "open": true, "title": "Crosskola"},
-        {"date": "2026-06-25", "start": "17:00", "end": "20:00", "open": true, "title": "Allmän träning"},
-        {"date": "2026-06-27", "start": "10:00", "end": "14:00", "open": true, "title": "Allmän träning"},
-        {"date": "2026-06-30", "start": "17:00", "end": "20:00", "open": true, "title": "Allmän träning"}
-      ]
+      "url": "https://uringe.se/kalender",
+      "events": []
     },
     {
       "id": "nynashamn",
       "name": "Nynäshamn MCK",
-      "url": "nynashamnsmck.se",
-      "color": "#534AB7",
+      "url": "https://nynashamnsmck.se/kalender/",
       "events": [
-        {"date": "2026-06-24", "start": "17:00", "end": "20:00", "open": true},
-        {"date": "2026-07-01", "start": "17:00", "end": "20:00", "open": true},
-        {"date": "2026-07-04", "start": "10:00", "end": "14:00", "open": true},
-        {"date": "2026-07-05", "start": "10:00", "end": "14:00", "open": true}
+        {
+          "date": "2026-06-03",
+          "start": "17:00",
+          "end": "20:00",
+          "open": true,
+          "title": "Evenemang",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-06-06",
+          "start": "10:00",
+          "end": "14:00",
+          "open": true,
+          "title": "2026-06-06",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-06-07",
+          "start": "10:00",
+          "end": "14:00",
+          "open": true,
+          "title": "2026-06-07",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-06-10",
+          "start": "17:00",
+          "end": "20:00",
+          "open": true,
+          "title": "2026-06-10",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-06-13",
+          "start": "10:00",
+          "end": "14:00",
+          "open": true,
+          "title": "2026-06-13",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-06-14",
+          "start": "10:00",
+          "end": "14:00",
+          "open": true,
+          "title": "2026-06-14",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-06-17",
+          "start": "17:00",
+          "end": "20:00",
+          "open": true,
+          "title": "2026-06-17",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-07-01",
+          "start": "17:00",
+          "end": "20:00",
+          "open": true,
+          "title": "2026-07-01",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-07-04",
+          "start": "10:00",
+          "end": "14:00",
+          "open": true,
+          "title": "2026-07-04",
+          "source": "nynashamnsmck.se"
+        },
+        {
+          "date": "2026-07-05",
+          "start": "10:00",
+          "end": "14:00",
+          "open": true,
+          "title": "2026-07-05",
+          "source": "nynashamnsmck.se"
+        }
       ]
     },
     {
       "id": "arlanda",
       "name": "Arlanda MC",
-      "url": "arlandamc.se",
-      "color": "#D4537E",
+      "url": "https://www.arlandamc.se/traningstider/",
       "events": [
-        {"date": "2026-06-24", "start": "17:00", "end": "20:00", "open": true},
-        {"date": "2026-06-27", "start": "09:00", "end": "14:00", "open": true},
-        {"date": "2026-06-28", "start": "09:00", "end": "15:00", "open": true}
+        {
+          "date": "2026-06-27",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-06-28",
+          "start": "09:00",
+          "end": "15:00",
+          "open": true,
+          "title": "09:00 - 15:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-07-04",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-07-18",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-07-25",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        }
       ]
     },
     {
-      "id": "haninge",
-      "name": "Haninge MK",
-      "url": "haningemotorklubb.se",
-      "color": "#1D9E75",
-      "rebuilding": true,
-      "note": "Crossbanan stängd – byggs om. Endurobanan öppen normala tider.",
-      "events": [
-        {"date": "2026-06-24", "start": "10:00", "end": "14:00", "open": true, "enduro_only": true}
-      ]
+      "id": "varmdo",
+      "name": "Värmdö MK",
+      "url": "https://varmdomx.se/kalender",
+      "events": []
     },
     {
       "id": "uvmk",
       "name": "Upplands Väsby MK",
-      "url": "uvmk.nu",
-      "color": "#185FA5",
-      "gcal": true,
+      "url": "https://uvmk.nu/kalender/",
+      "note": "Använder Google Kalender – uppdateras manuellt tills ICS-länk finns.",
       "manual": true,
-      "note": "Kalender via Google Calendar – besök uvmk.nu för aktuella tider.",
       "events": []
+    },
+    {
+      "id": "haninge",
+      "name": "Haninge MK",
+      "url": "https://anm.haningemotorklubb.se/anm/oppnBokn.php",
+      "note": "Crossbanan stängd tills vidare – byggs om. Endurobanan öppen normala tider.",
+      "events": [
+        {
+          "date": "2026-06-10",
+          "start": "17:30",
+          "end": "20:30",
+          "open": true,
+          "enduro_only": true,
+          "responsible": "StÃ¤ngt",
+          "source": "haningemotorklubb.se"
+        },
+        {
+          "date": "2026-06-17",
+          "start": "17:30",
+          "end": "20:30",
+          "open": true,
+          "enduro_only": true,
+          "responsible": "Jocke s och Bosse b",
+          "source": "haningemotorklubb.se"
+        },
+        {
+          "date": "2026-06-21",
+          "start": "10:00",
+          "end": "14:00",
+          "open": true,
+          "enduro_only": true,
+          "responsible": "Leif Blomberg",
+          "source": "haningemotorklubb.se"
+        },
+        {
+          "date": "2026-06-24",
+          "start": "17:30",
+          "end": "20:30",
+          "open": true,
+          "enduro_only": true,
+          "responsible": "Johan & BjÃ¶rn",
+          "source": "haningemotorklubb.se"
+        },
+        {
+          "date": "2026-07-01",
+          "start": "17:30",
+          "end": "20:30",
+          "open": true,
+          "enduro_only": true,
+          "responsible": "Jocke&Bosse",
+          "source": "haningemotorklubb.se"
+        }
+      ]
     },
     {
       "id": "botkyrka",
       "name": "Botkyrka MK",
-      "url": "botkyrkamk.se",
-      "color": "#888780",
+      "url": "https://www.botkyrkamk.se/kalender",
+      "note": "Blockerar automatisk hämtning. Uppdateras manuellt.",
       "manual": true,
-      "note": "",
       "events": []
     },
     {
       "id": "taby",
       "name": "Täby MK",
-      "url": "tabymk.se",
-      "color": "#888780",
+      "url": "https://www.tabymk.se/",
+      "note": "Blockerar automatisk hämtning. Uppdateras manuellt.",
       "manual": true,
-      "note": "",
       "events": []
     }
   ]
