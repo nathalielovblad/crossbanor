@@ -11,88 +11,7 @@
       "id": "nynashamn",
       "name": "Nynäshamn MCK",
       "url": "https://nynashamnsmck.se/kalender/",
-      "events": [
-        {
-          "date": "2026-06-03",
-          "start": "17:00",
-          "end": "20:00",
-          "open": true,
-          "title": "Evenemang",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-06-06",
-          "start": "10:00",
-          "end": "14:00",
-          "open": true,
-          "title": "2026-06-06",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-06-07",
-          "start": "10:00",
-          "end": "14:00",
-          "open": true,
-          "title": "2026-06-07",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-06-10",
-          "start": "17:00",
-          "end": "20:00",
-          "open": true,
-          "title": "2026-06-10",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-06-13",
-          "start": "10:00",
-          "end": "14:00",
-          "open": true,
-          "title": "2026-06-13",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-06-14",
-          "start": "10:00",
-          "end": "14:00",
-          "open": true,
-          "title": "2026-06-14",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-06-17",
-          "start": "17:00",
-          "end": "20:00",
-          "open": true,
-          "title": "2026-06-17",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-07-01",
-          "start": "17:00",
-          "end": "20:00",
-          "open": true,
-          "title": "2026-07-01",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-07-04",
-          "start": "10:00",
-          "end": "14:00",
-          "open": true,
-          "title": "2026-07-04",
-          "source": "nynashamnsmck.se"
-        },
-        {
-          "date": "2026-07-05",
-          "start": "10:00",
-          "end": "14:00",
-          "open": true,
-          "title": "2026-07-05",
-          "source": "nynashamnsmck.se"
-        }
-      ]
+      "events": []
     },
     {
       "id": "arlanda",
@@ -160,53 +79,7 @@
       "name": "Haninge MK",
       "url": "https://anm.haningemotorklubb.se/anm/oppnBokn.php",
       "note": "Crossbanan stängd tills vidare – byggs om. Endurobanan öppen normala tider.",
-      "events": [
-        {
-          "date": "2026-06-10",
-          "start": "17:30",
-          "end": "20:30",
-          "open": true,
-          "enduro_only": true,
-          "responsible": "StÃ¤ngt",
-          "source": "haningemotorklubb.se"
-        },
-        {
-          "date": "2026-06-17",
-          "start": "17:30",
-          "end": "20:30",
-          "open": true,
-          "enduro_only": true,
-          "responsible": "Jocke s och Bosse b",
-          "source": "haningemotorklubb.se"
-        },
-        {
-          "date": "2026-06-21",
-          "start": "10:00",
-          "end": "14:00",
-          "open": true,
-          "enduro_only": true,
-          "responsible": "Leif Blomberg",
-          "source": "haningemotorklubb.se"
-        },
-        {
-          "date": "2026-06-24",
-          "start": "17:30",
-          "end": "20:30",
-          "open": true,
-          "enduro_only": true,
-          "responsible": "Johan & BjÃ¶rn",
-          "source": "haningemotorklubb.se"
-        },
-        {
-          "date": "2026-07-01",
-          "start": "17:30",
-          "end": "20:30",
-          "open": true,
-          "enduro_only": true,
-          "responsible": "Jocke&Bosse",
-          "source": "haningemotorklubb.se"
-        }
-      ]
+      "events": []
     },
     {
       "id": "botkyrka",
