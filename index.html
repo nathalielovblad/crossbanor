@@ -8,7 +8,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --or: #E8600A; --or-l: #FFF0E6; --bl: #0A2A4A; --bl-m: #1A4A7A;
+      --or: #E8600A; --or-l: #FFF0E6; --bl: #0A2A4A;
       --white: #ffffff; --bg: #F5F4F1; --card: #ffffff;
       --border: rgba(0,0,0,0.10); --border-strong: rgba(0,0,0,0.18);
       --text: #111111; --text-muted: #6B7280; --text-faint: #9CA3AF;
@@ -28,13 +28,13 @@
     .badge { background: var(--or); border-radius: var(--radius-sm); padding: .4rem .9rem; text-align: center; }
     .badge .n { font-size: 20px; font-weight: 700; color: #fff; line-height: 1; }
     .badge .s { font-size: 10px; color: #FFD0A8; text-transform: uppercase; letter-spacing: .05em; }
-    .admin-btn { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-sm); padding: 7px 14px; color: #fff; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .admin-btn { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-sm); padding: 7px 14px; color: #fff; font-size: 12px; cursor: pointer; }
     .admin-btn:hover { background: rgba(255,255,255,.18); }
     .admin-btn.active { background: var(--or); border-color: var(--or); }
     .week-nav { display: flex; align-items: center; gap: 6px; margin-bottom: .9rem; }
     .nav-btn { background: var(--card); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); padding: 7px 12px; font-size: 14px; cursor: pointer; color: var(--text); }
     .nav-btn:hover { background: var(--bg); }
-    .week-label { flex: 1; text-align: center; font-size: 14px; font-weight: 600; color: var(--text); }
+    .week-label { flex: 1; text-align: center; font-size: 14px; font-weight: 600; }
     .today-btn { font-size: 12px; padding: 5px 12px; color: var(--or); border-color: var(--or); }
     .cal-strip { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; margin-bottom: 1rem; }
     .cal-day { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 5px; min-height: 64px; text-align: center; }
@@ -70,15 +70,14 @@
     .slot-open { background: var(--green-bg); color: var(--green-text); }
     .slot-closed { background: var(--gray-bg); color: var(--gray-text); text-decoration: line-through; }
     .slot-enduro { background: var(--purple-bg); color: var(--purple-text); }
-    .slot-event { background: var(--blue-bg); color: var(--blue-text); }
-    .slot-title { font-size: 11px; color: var(--text-muted); font-style: italic; }
+    .slot-title { font-size: 11px; color: var(--text-muted); font-style: italic; flex: 1; }
     .no-data { font-size: 11px; color: var(--text-faint); font-style: italic; padding: 6px 14px; line-height: 1.5; }
     .no-data a { color: var(--or); }
     .bana-note { font-size: 11px; color: var(--text-muted); padding: 6px 14px 0; line-height: 1.5; }
     .admin-panel { background: var(--card); border: 1px solid var(--border-strong); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; display: none; }
     .admin-panel.show { display: block; }
     .admin-title { font-size: 13px; font-weight: 600; margin-bottom: .75rem; color: var(--text); }
-    .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: .75rem; }
+    .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .75rem; }
     .admin-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .75rem 1rem; }
     .admin-bname { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: .5rem; display: flex; align-items: center; gap: 6px; }
     .admin-label { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
@@ -91,11 +90,20 @@
     .btn-add:hover { background: var(--or-l); }
     .btn-save { border-color: var(--border-strong); color: var(--text-muted); background: transparent; }
     .btn-save:hover { background: var(--bg); }
-    .ev-list { margin-top: .5rem; display: flex; flex-direction: column; gap: 3px; max-height: 130px; overflow-y: auto; }
-    .ev-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); background: var(--card); border-radius: 4px; padding: 3px 8px; }
-    .ev-item span { flex: 1; }
+    .ev-list { margin-top: .5rem; display: flex; flex-direction: column; gap: 4px; max-height: 200px; overflow-y: auto; }
+    .ev-item { background: var(--card); border-radius: 4px; padding: 4px 8px; font-size: 11px; color: var(--text-muted); }
+    .ev-item-row { display: flex; align-items: center; gap: 4px; }
+    .ev-item-row span { flex: 1; }
+    .ev-edit-btn { background: none; border: none; cursor: pointer; font-size: 13px; padding: 0 2px; color: var(--text-faint); line-height: 1; }
+    .ev-edit-btn:hover { color: var(--or); }
     .ev-del { background: none; border: none; color: var(--text-faint); cursor: pointer; font-size: 16px; padding: 0 2px; line-height: 1; }
     .ev-del:hover { color: #E24B4A; }
+    .ev-edit-form { margin-top: 5px; display: flex; flex-direction: column; gap: 4px; background: var(--bg); border-radius: 4px; padding: 6px; }
+    .ev-edit-form input, .ev-edit-form select { font-size: 11px; padding: 4px 6px; border-radius: 4px; border: 1px solid var(--border-strong); background: var(--card); color: var(--text); width: 100%; }
+    .ev-edit-btns { display: flex; gap: 4px; margin-top: 2px; }
+    .ev-edit-btns button { flex: 1; font-size: 11px; padding: 4px; border-radius: 4px; cursor: pointer; border: 1px solid; }
+    .btn-confirm { border-color: var(--or); color: var(--or); background: transparent; }
+    .btn-cancel { border-color: var(--border-strong); color: var(--text-muted); background: transparent; }
     .save-msg { font-size: 11px; color: var(--text-faint); text-align: right; margin-top: .5rem; min-height: 16px; }
     .footer { font-size: 11px; color: var(--text-faint); text-align: center; margin-top: 1.5rem; line-height: 1.6; }
     .footer a { color: var(--or); text-decoration: none; }
@@ -122,22 +130,26 @@
       <button class="admin-btn" id="admin-btn" onclick="toggleAdmin()">&#9881; Admin</button>
     </div>
   </div>
+
   <div class="admin-panel" id="admin-panel">
     <div class="admin-title">&#9881; Administrera banor</div>
     <div class="admin-grid" id="admin-grid"></div>
     <div class="save-msg" id="save-msg"></div>
   </div>
+
   <div class="week-nav">
     <button class="nav-btn" onclick="changeWeek(-1)">&#8249;</button>
     <span class="week-label" id="week-label"></span>
     <button class="nav-btn today-btn" onclick="goToday()">Idag</button>
     <button class="nav-btn" onclick="changeWeek(1)">&#8250;</button>
   </div>
+
   <div class="cal-strip" id="cal-strip"></div>
   <div class="legend" id="legend"></div>
   <div class="section-head">Banorna denna veckan</div>
   <div class="bana-grid" id="bana-grid"></div>
   <div class="updated-tag" id="updated-tag"></div>
+
   <div class="footer">
     Data hämtas automatiskt från Uringe, Värmdö, Nynäshamn, Arlanda och Haninge.<br>
     Upplands Väsby, Botkyrka och Täby uppdateras manuellt.<br>
@@ -145,10 +157,12 @@
     <a href="https://crossbanor.se">crossbanor.se</a>
   </div>
 </div>
+
 <script>
 const DAYS = ['Mån','Tis','Ons','Tor','Fre','Lör','Sön'];
 const MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
 let BANOR = [];
+let overrides = {};
 let manualData = {};
 let adminOpen = false;
 let mon = getMonday(new Date());
@@ -161,157 +175,248 @@ function ds(d) {
   return `${y}-${m}-${day}`;
 }
 function getMonday(d) {
-  const x = new Date(d);
-  const day = x.getDay();
-  x.setDate(x.getDate() + (day === 0 ? -6 : 1 - day));
-  x.setHours(0,0,0,0);
-  return x;
+  const x = new Date(d); const day = x.getDay();
+  x.setDate(x.getDate() + (day===0 ? -6 : 1-day)); x.setHours(0,0,0,0); return x;
 }
 function weekNum(d) {
   const x = new Date(d); x.setHours(0,0,0,0);
-  x.setDate(x.getDate() + 3 - (x.getDay()+6)%7);
+  x.setDate(x.getDate()+3-(x.getDay()+6)%7);
   const w = new Date(x.getFullYear(),0,4);
-  return 1 + Math.round(((x-w)/86400000 - 3 + (w.getDay()+6)%7)/7);
+  return 1+Math.round(((x-w)/86400000-3+(w.getDay()+6)%7)/7);
 }
+
 async function loadData() {
   try {
-    const r = await fetch('oppettider.json?v=' + Date.now());
+    const r = await fetch('oppettider.json?v='+Date.now());
     const data = await r.json();
     BANOR = data.banor;
-    if (data.updated) document.getElementById('updated-tag').textContent = 'Senast uppdaterad: ' + data.updated;
-    BANOR.forEach(b => { if (!manualData[b.id]) manualData[b.id] = { note: b.note || '', events: [] }; });
+    if (data.updated) document.getElementById('updated-tag').textContent = 'Senast uppdaterad: '+data.updated;
+    BANOR.forEach(b => {
+      if (!manualData[b.id]) manualData[b.id] = { note: b.note||'', events:[] };
+      if (!overrides[b.id]) overrides[b.id] = {};
+    });
     render();
   } catch(e) {
     document.getElementById('bana-grid').innerHTML = '<p style="color:#888;padding:1rem">Kunde inte ladda öppettider. Försök igen senare.</p>';
   }
 }
-function allOpenToday() {
-  return BANOR.filter(b => {
-    const sc = (b.events||[]).find(e => e.date === TODAY && e.open);
-    const mn = (manualData[b.id]?.events||[]).find(e => e.d === TODAY && e.open);
-    return sc || mn;
-  });
+
+function applyOverride(bid, ev) {
+  const ov = overrides[bid]?.[ev.date];
+  if (!ov) return ev;
+  return {
+    ...ev,
+    start: ov.time ? ov.time.split('–')[0] : ev.start,
+    end:   ov.time ? (ov.time.split('–')[1]||'') : ev.end,
+    title: ov.title !== undefined ? ov.title : ev.title,
+    open:  ov.open  !== undefined ? ov.open  : ev.open,
+    overridden: true
+  };
 }
+
 function getWeekEvts(b, week) {
   const wdates = week.map(d => ds(d));
   const sc = (b.events||[]).filter(e => wdates.includes(e.date));
   const mn = (manualData[b.id]?.events||[]).filter(e => wdates.includes(e.d));
-  // Scraped title wins; manual description only fills in if scraped has none
   const manualDescs = {};
   mn.forEach(e => { if (e.title) manualDescs[e.d] = e.title; });
-  const merged = sc.map(e => ({ ...e, title: e.title || manualDescs[e.date] || '' }));
+  const merged = sc.map(e => {
+    const base = { ...e, title: e.title || manualDescs[e.date] || '' };
+    return applyOverride(b.id, base);
+  });
   if (b.manual || b.gcal || b.rebuilding) {
     const scDates = sc.map(e => e.date);
     const manualOnly = mn.filter(e => !scDates.includes(e.d));
-    return [...merged, ...manualOnly.map(e => ({ date: e.d, start: e.t, end: '', title: e.title||'', open: e.open, manual: true }))];
+    return [...merged, ...manualOnly.map(e => {
+      const base = { date: e.d, start: e.t, end:'', title: e.title||'', open: e.open, manual: true };
+      return applyOverride(b.id, base);
+    })];
   }
   return merged;
 }
+
+function allOpenToday() {
+  return BANOR.filter(b => {
+    const evts = getWeekEvts(b, [new Date()]);
+    return evts.find(e => e.date === TODAY && e.open);
+  });
+}
+
 function render() {
   const now = new Date();
-  document.getElementById('hdr-date').textContent = 'Idag: ' + DAYS[(now.getDay()+6)%7] + ' ' + now.getDate() + ' ' + MONTHS[now.getMonth()] + ' ' + now.getFullYear();
+  document.getElementById('hdr-date').textContent =
+    'Idag: '+DAYS[(now.getDay()+6)%7]+' '+now.getDate()+' '+MONTHS[now.getMonth()]+' '+now.getFullYear();
   document.getElementById('open-count').textContent = allOpenToday().length;
+
   const week = [];
-  for (let i = 0; i < 7; i++) { const d = new Date(mon); d.setDate(d.getDate()+i); week.push(d); }
-  const wn = weekNum(mon);
-  const s = week[0], e = week[6], sm = MONTHS[s.getMonth()], em = MONTHS[e.getMonth()];
-  document.getElementById('week-label').textContent = 'Vecka ' + wn + ' · ' + s.getDate() + (sm !== em ? ' '+sm : '') + '–' + e.getDate() + ' ' + em;
-  const calEl = document.getElementById('cal-strip'); calEl.innerHTML = '';
-  week.forEach((d, i) => {
-    const dstr = ds(d);
-    const openBanor = BANOR.filter(b => (b.events||[]).find(e => e.date === dstr && e.open) || (manualData[b.id]?.events||[]).find(e => e.d === dstr && e.open));
-    const div = document.createElement('div');
-    div.className = 'cal-day' + (dstr===TODAY?' today':'') + (openBanor.length?' has-open':'');
-    div.innerHTML = `<div class="cal-day-name">${DAYS[i].slice(0,3)}</div><div class="cal-day-num">${d.getDate()}</div><div class="pips">${openBanor.map(b=>`<div class="pip" style="background:${b.color}"></div>`).join('')}</div>`;
+  for (let i=0;i<7;i++) { const d=new Date(mon); d.setDate(d.getDate()+i); week.push(d); }
+  const wn=weekNum(mon), s=week[0], e=week[6];
+  const sm=MONTHS[s.getMonth()], em=MONTHS[e.getMonth()];
+  document.getElementById('week-label').textContent =
+    'Vecka '+wn+' · '+s.getDate()+(sm!==em?' '+sm:'')+'–'+e.getDate()+' '+em;
+
+  const calEl=document.getElementById('cal-strip'); calEl.innerHTML='';
+  week.forEach((d,i) => {
+    const dstr=ds(d);
+    const openBanor=BANOR.filter(b=>getWeekEvts(b,[d]).find(e=>e.date===dstr&&e.open));
+    const div=document.createElement('div');
+    div.className='cal-day'+(dstr===TODAY?' today':'')+(openBanor.length?' has-open':'');
+    div.innerHTML=`<div class="cal-day-name">${DAYS[i].slice(0,3)}</div><div class="cal-day-num">${d.getDate()}</div><div class="pips">${openBanor.map(b=>`<div class="pip" style="background:${b.color}"></div>`).join('')}</div>`;
     calEl.appendChild(div);
   });
-  document.getElementById('legend').innerHTML = BANOR.map(b => `<div class="leg"><div class="leg-dot" style="background:${b.color}"></div>${b.name.split(' ')[0]}</div>`).join('');
-  const grid = document.getElementById('bana-grid'); grid.innerHTML = '';
+
+  document.getElementById('legend').innerHTML = BANOR.map(b =>
+    `<div class="leg"><div class="leg-dot" style="background:${b.color}"></div>${b.name.split(' ')[0]}</div>`
+  ).join('');
+
+  const grid=document.getElementById('bana-grid'); grid.innerHTML='';
   BANOR.forEach(b => {
-    const evts = getWeekEvts(b, week);
-    const openEvts = evts.filter(e => e.open);
-    const note = manualData[b.id]?.note || b.note || '';
-    let statusClass, statusText;
-    if (b.rebuilding) { statusClass = 'status-rebuilding'; statusText = 'Byggs om'; }
-    else if (b.gcal) { statusClass = 'status-gcal'; statusText = 'Google Cal'; }
-    else if (b.manual && !openEvts.length) { statusClass = 'status-manual'; statusText = 'Manuell'; }
-    else if (openEvts.length) { statusClass = 'status-open'; statusText = 'Öppet ' + openEvts.length + '×'; }
-    else { statusClass = 'status-closed'; statusText = 'Stängt'; }
-    let slots = '';
-    if (note) slots += `<div class="bana-note">ℹ️ ${note}</div>`;
-    const weekMap = {};
-    week.forEach(d => { weekMap[ds(d)] = d; });
-    const shown = evts.filter(e => weekMap[e.date]);
+    const evts=getWeekEvts(b,week);
+    const openEvts=evts.filter(e=>e.open);
+    const note=manualData[b.id]?.note||b.note||'';
+    let sc,st;
+    if (b.rebuilding){sc='status-rebuilding';st='Byggs om';}
+    else if (b.gcal){sc='status-gcal';st='Google Cal';}
+    else if (b.manual&&!openEvts.length){sc='status-manual';st='Manuell';}
+    else if (openEvts.length){sc='status-open';st='Öppet '+openEvts.length+'×';}
+    else{sc='status-closed';st='Stängt';}
+
+    let slots='';
+    if (note) slots+=`<div class="bana-note">ℹ️ ${note}</div>`;
+    const weekMap={}; week.forEach(d=>{weekMap[ds(d)]=d;});
+    const shown=evts.filter(e=>weekMap[e.date]);
     if (shown.length) {
-      slots += '<div class="bana-slots">';
+      slots+='<div class="bana-slots">';
       shown.forEach(ev => {
-        const d = weekMap[ev.date];
-        const lbl = DAYS[(d.getDay()+6)%7] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
-        const t = ev.start + (ev.end ? '–'+ev.end : '');
-        const cls = ev.enduro_only ? 'slot-enduro' : ev.open ? 'slot-open' : 'slot-closed';
-        const extra = ev.enduro_only ? ' (enduro)' : '';
-        const titleHtml = ev.title ? `<span class="slot-title">${ev.title}</span>` : '';
-        slots += `<div class="slot-row"><span class="slot-date">${lbl}</span><span class="slot-time ${cls}">${t}${extra}</span>${titleHtml}</div>`;
+        const d=weekMap[ev.date];
+        const lbl=DAYS[(d.getDay()+6)%7]+' '+d.getDate()+' '+MONTHS[d.getMonth()];
+        const t=ev.start+(ev.end?'–'+ev.end:'');
+        const cls=ev.enduro_only?'slot-enduro':ev.open?'slot-open':'slot-closed';
+        const titleHtml=ev.title?`<span class="slot-title">${ev.title}</span>`:'';
+        const ovTag=ev.overridden?'<span style="font-size:10px;color:var(--or)"> ✏️</span>':'';
+        slots+=`<div class="slot-row"><span class="slot-date">${lbl}</span><span class="slot-time ${cls}">${t}</span>${titleHtml}${ovTag}</div>`;
       });
-      slots += '</div>';
+      slots+='</div>';
     } else if (!note) {
-      const msg = b.gcal ? `Se kalender på <a href="https://${b.url}/kalender/" target="_blank">${b.url}</a>` : b.manual ? `Inga tider inlagda. Besök <a href="https://${b.url}" target="_blank">${b.url}</a>` : 'Inga körningar planerade denna veckan.';
-      slots += `<div class="no-data">${msg}</div>`;
+      const msg=b.gcal?`Se kalender på <a href="https://${b.url}/kalender/" target="_blank">${b.url}</a>`:b.manual?`Inga tider inlagda. Besök <a href="https://${b.url}" target="_blank">${b.url}</a>`:'Inga körningar planerade denna veckan.';
+      slots+=`<div class="no-data">${msg}</div>`;
     }
-    grid.innerHTML += `<div class="bana-card"><div class="bana-top"><div class="bana-dot" style="background:${b.color}"></div><div class="bana-info"><div class="bana-name">${b.name}</div><div class="bana-url">${b.url}</div></div><span class="bana-status ${statusClass}">${statusText}</span></div>${slots}</div>`;
+    grid.innerHTML+=`<div class="bana-card"><div class="bana-top"><div class="bana-dot" style="background:${b.color}"></div><div class="bana-info"><div class="bana-name">${b.name}</div><div class="bana-url">${b.url}</div></div><span class="bana-status ${sc}">${st}</span></div>${slots}</div>`;
   });
+
   if (adminOpen) renderAdmin();
 }
+
 function toggleAdmin() {
-  adminOpen = !adminOpen;
-  document.getElementById('admin-panel').classList.toggle('show', adminOpen);
-  const btn = document.getElementById('admin-btn');
-  btn.classList.toggle('active', adminOpen);
-  btn.textContent = adminOpen ? '🔓 Admin' : '⚙️ Admin';
+  adminOpen=!adminOpen;
+  document.getElementById('admin-panel').classList.toggle('show',adminOpen);
+  const btn=document.getElementById('admin-btn');
+  btn.classList.toggle('active',adminOpen);
+  btn.textContent=adminOpen?'🔓 Admin':'⚙️ Admin';
   if (adminOpen) renderAdmin();
 }
+
 function renderAdmin() {
-  const manual = BANOR.filter(b => ['uringe','varmdo','nynashamn','arlanda','haninge','uvmk','botkyrka','taby'].includes(b.id));
-  document.getElementById('admin-grid').innerHTML = manual.map(b => {
-    const md = manualData[b.id] || { note:'', events:[] };
-    const evList = md.events.length
-      ? md.events.map((ev,i) => `<div class="ev-item"><span>${ev.d}${ev.title?' · '+ev.title:''}</span><button class="ev-del" onclick="delEv('${b.id}',${i})">×</button></div>`).join('')
-      : '<div style="font-size:11px;color:#aaa;padding:3px 0">Inga beskrivningar inlagda</div>';
-    const isAuto = !b.manual && !b.gcal && !b.rebuilding;
-    const formLabel = isAuto ? 'Lägg till beskrivning (visas om banan inte har egen text)' : 'Lägg till tillfälle';
+  document.getElementById('admin-grid').innerHTML=BANOR.map(b=>{
+    const md=manualData[b.id]||{note:'',events:[]};
+    const isAuto=!b.manual&&!b.gcal&&!b.rebuilding;
+    const allEvts=[
+      ...(b.events||[]).map(e=>({...e, src:'scraped'})),
+      ...md.events.map((e,midx)=>({date:e.d, start:e.t, end:'', title:e.title||'', open:e.open, src:'manual', midx}))
+    ].sort((a,b)=>a.date.localeCompare(b.date));
+
+    const evListHtml=allEvts.length ? allEvts.map((ev,i)=>{
+      const ov=overrides[b.id]?.[ev.date];
+      const dispTime=ov?.time||(ev.start+(ev.end?'–'+ev.end:''));
+      const dispTitle=ov?.title!==undefined?ov.title:(ev.title||'');
+      const dispOpen=ov?.open!==undefined?ov.open:ev.open;
+      const srcTag=ev.src==='scraped'?'<span style="color:#bbb;font-size:10px"> auto</span>':'<span style="color:#bbb;font-size:10px"> manuell</span>';
+      const ovMark=ov?'<span style="color:var(--or);font-size:10px"> ✏️</span>':'';
+      return `<div class="ev-item" id="evitem-${b.id}-${i}">
+        <div class="ev-item-row">
+          <span>${ev.date} · ${dispTime}${dispTitle?' · '+dispTitle:''}${srcTag}${ovMark}</span>
+          <button class="ev-edit-btn" onclick="toggleEditForm('${b.id}',${i})" title="Redigera">✏️</button>
+          ${ov?`<button class="ev-edit-btn" onclick="clearOverride('${b.id}','${ev.date}')" title="Återställ">↩️</button>`:''}
+          ${ev.src==='manual'?`<button class="ev-del" onclick="delManualEv('${b.id}',${ev.midx})">×</button>`:''}
+        </div>
+        <div class="ev-edit-form" id="editform-${b.id}-${i}" style="display:none">
+          <input type="text" id="ef-time-${b.id}-${i}" value="${dispTime}" placeholder="10:00–14:00">
+          <input type="text" id="ef-title-${b.id}-${i}" value="${dispTitle}" placeholder="t.ex. Allmän träning">
+          <select id="ef-open-${b.id}-${i}">
+            <option value="open" ${dispOpen?'selected':''}>Öppet</option>
+            <option value="closed" ${!dispOpen?'selected':''}>Stängt</option>
+          </select>
+          <div class="ev-edit-btns">
+            <button class="btn-confirm" onclick="saveOverride('${b.id}',${i},'${ev.date}')">Spara</button>
+            <button class="btn-cancel" onclick="toggleEditForm('${b.id}',${i})">Avbryt</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('') : '<div style="font-size:11px;color:#aaa;padding:3px 0">Inga tillfällen</div>';
+
+    const formLabel=isAuto?'Lägg till beskrivning för datum':'Lägg till tillfälle';
     return `<div class="admin-card">
       <div class="admin-bname"><div class="bana-dot" style="background:${b.color}"></div>${b.name}</div>
       <div class="admin-label">Notis (visas på kortet)</div>
       <input class="admin-input" id="note-${b.id}" value="${md.note}" placeholder="t.ex. Stängt p.g.a. tävling">
       <button class="btn btn-save" onclick="saveNote('${b.id}')">Spara notis</button>
-      <div class="admin-label" style="margin-top:.6rem">${formLabel}</div>
+      <div class="admin-label" style="margin-top:.75rem">Tillfällen & beskrivningar</div>
+      <div class="ev-list">${evListHtml}</div>
+      <div class="admin-label" style="margin-top:.75rem">${formLabel}</div>
       <div class="admin-row"><label>Datum</label><input type="date" id="d-${b.id}"></div>
-      ${!isAuto ? `<div class="admin-row"><label>Tider</label><input type="text" id="t-${b.id}" placeholder="10:00–14:00"></div>` : `<input type="hidden" id="t-${b.id}" value="-">`}
+      ${!isAuto?`<div class="admin-row"><label>Tider</label><input type="text" id="t-${b.id}" placeholder="10:00–14:00"></div>`:`<input type="hidden" id="t-${b.id}" value="-">`}
       <div class="admin-row"><label>Beskr.</label><input type="text" id="tt-${b.id}" placeholder="t.ex. Allmän träning"></div>
-      ${!isAuto ? `<div class="admin-row"><label>Status</label><select id="s-${b.id}"><option value="open">Öppet</option><option value="closed">Stängt</option></select></div>` : `<input type="hidden" id="s-${b.id}" value="open">`}
+      ${!isAuto?`<div class="admin-row"><label>Status</label><select id="s-${b.id}"><option value="open">Öppet</option><option value="closed">Stängt</option></select></div>`:`<input type="hidden" id="s-${b.id}" value="open">`}
       <button class="btn btn-add" onclick="addEv('${b.id}')">+ Lägg till</button>
-      <div class="ev-list">${evList}</div>
     </div>`;
   }).join('');
 }
-function saveNote(id) { if (!manualData[id]) manualData[id] = { note:'', events:[] }; manualData[id].note = document.getElementById('note-'+id).value; showMsg('Notis sparad'); render(); }
-function addEv(id) {
-  const d = document.getElementById('d-'+id).value;
-  const t = document.getElementById('t-'+id).value;
-  const tt = document.getElementById('tt-'+id)?.value || '';
-  const s = document.getElementById('s-'+id).value;
-  if (!d) { alert('Fyll i datum'); return; }
-  if (!manualData[id]) manualData[id] = { note:'', events:[] };
-  manualData[id].events.push({ d, t, title: tt, open: s==='open' });
-  manualData[id].events.sort((a,b) => a.d.localeCompare(b.d));
-  document.getElementById('d-'+id).value = '';
-  if (document.getElementById('tt-'+id)) document.getElementById('tt-'+id).value = '';
-  showMsg('Sparat'); render();
+
+function toggleEditForm(bid, idx) {
+  const f=document.getElementById(`editform-${bid}-${idx}`);
+  f.style.display=f.style.display==='none'?'block':'none';
 }
-function delEv(id, i) { manualData[id].events.splice(i, 1); showMsg('Borttaget'); render(); }
-function showMsg(m) { const el = document.getElementById('save-msg'); el.textContent = '✓ ' + m; setTimeout(() => el.textContent = '', 4000); }
-function changeWeek(dir) { mon.setDate(mon.getDate() + dir*7); render(); }
-function goToday() { mon = getMonday(new Date()); render(); }
+function saveOverride(bid, idx, date) {
+  const time=document.getElementById(`ef-time-${bid}-${idx}`).value;
+  const title=document.getElementById(`ef-title-${bid}-${idx}`).value;
+  const open=document.getElementById(`ef-open-${bid}-${idx}`).value==='open';
+  if (!overrides[bid]) overrides[bid]={};
+  overrides[bid][date]={time,title,open};
+  showMsg('Ändring sparad'); render();
+}
+function clearOverride(bid, date) {
+  if (overrides[bid]) delete overrides[bid][date];
+  showMsg('Återställd till original'); render();
+}
+function saveNote(id) {
+  if (!manualData[id]) manualData[id]={note:'',events:[]};
+  manualData[id].note=document.getElementById('note-'+id).value;
+  showMsg('Notis sparad'); render();
+}
+function addEv(id) {
+  const d=document.getElementById('d-'+id).value;
+  const t=document.getElementById('t-'+id).value;
+  const tt=document.getElementById('tt-'+id)?.value||'';
+  const s=document.getElementById('s-'+id).value;
+  if (!d){alert('Fyll i datum');return;}
+  if (!manualData[id]) manualData[id]={note:'',events:[]};
+  manualData[id].events.push({d,t,title:tt,open:s==='open'});
+  manualData[id].events.sort((a,b)=>a.d.localeCompare(b.d));
+  document.getElementById('d-'+id).value='';
+  if (document.getElementById('tt-'+id)) document.getElementById('tt-'+id).value='';
+  showMsg('Tillfälle sparat'); render();
+}
+function delManualEv(id, i) {
+  manualData[id].events.splice(i,1);
+  showMsg('Borttaget'); render();
+}
+function showMsg(m) {
+  const el=document.getElementById('save-msg');
+  el.textContent='✓ '+m;
+  setTimeout(()=>el.textContent='',4000);
+}
+function changeWeek(dir){mon.setDate(mon.getDate()+dir*7);render();}
+function goToday(){mon=getMonday(new Date());render();}
 loadData();
 </script>
 </body>
