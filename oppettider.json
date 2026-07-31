@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-30",
+  "updated": "2026-07-31",
   "banor": [
     {
       "id": "uringe",
@@ -17,7 +17,104 @@
       "id": "arlanda",
       "name": "Arlanda MC",
       "url": "https://www.arlandamc.se/traningstider/",
-      "events": []
+      "events": [
+        {
+          "date": "2026-08-01",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-05",
+          "start": "17:00",
+          "end": "20:00",
+          "open": true,
+          "title": "17:00 - 20:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-08",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-09",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-12",
+          "start": "17:00",
+          "end": "20:00",
+          "open": true,
+          "title": "17:00 - 20:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-15",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-16",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-19",
+          "start": "17:00",
+          "end": "20:00",
+          "open": true,
+          "title": "17:00 - 20:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-23",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-26",
+          "start": "17:00",
+          "end": "20:00",
+          "open": true,
+          "title": "17:00 - 20:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-29",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-08-30",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        }
+      ]
     },
     {
       "id": "varmdo",
