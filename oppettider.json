@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-02",
+  "updated": "2026-08-03",
   "banor": [
     {
       "id": "uringe",
@@ -20,10 +20,10 @@
       "events": [
         {
           "date": "2026-08-05",
-          "start": "17:00",
+          "start": "16:00",
           "end": "20:00",
           "open": true,
-          "title": "17:00 - 20:00",
+          "title": "16:00 - 20:00",
           "source": "arlandamc.se"
         },
         {
@@ -44,10 +44,10 @@
         },
         {
           "date": "2026-08-12",
-          "start": "17:00",
+          "start": "16:00",
           "end": "20:00",
           "open": true,
-          "title": "17:00 - 20:00",
+          "title": "16:00 - 20:00",
           "source": "arlandamc.se"
         },
         {
@@ -68,10 +68,10 @@
         },
         {
           "date": "2026-08-19",
-          "start": "17:00",
+          "start": "16:00",
           "end": "20:00",
           "open": true,
-          "title": "17:00 - 20:00",
+          "title": "16:00 - 20:00",
           "source": "arlandamc.se"
         },
         {
@@ -84,10 +84,10 @@
         },
         {
           "date": "2026-08-26",
-          "start": "17:00",
+          "start": "16:00",
           "end": "20:00",
           "open": true,
-          "title": "17:00 - 20:00",
+          "title": "16:00 - 20:00",
           "source": "arlandamc.se"
         },
         {
