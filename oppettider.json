@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01",
+  "updated": "2026-10-02",
   "banor": [
     {
       "id": "uringe",
@@ -17,7 +17,64 @@
       "id": "arlanda",
       "name": "Arlanda MC",
       "url": "https://www.arlandamc.se/traningstider/",
-      "events": []
+      "events": [
+        {
+          "date": "2026-10-04",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-10-10",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-10-11",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-10-17",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-10-18",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-10-24",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-10-25",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        }
+      ]
     },
     {
       "id": "varmdo",
