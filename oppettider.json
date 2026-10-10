@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-09",
+  "updated": "2026-10-10",
   "banor": [
     {
       "id": "uringe",
@@ -19,7 +19,7 @@
       "url": "https://www.arlandamc.se/traningstider/",
       "events": [
         {
-          "date": "2026-10-10",
+          "date": "2026-10-11",
           "start": "09:00",
           "end": "14:00",
           "open": true,
@@ -27,7 +27,7 @@
           "source": "arlandamc.se"
         },
         {
-          "date": "2026-10-11",
+          "date": "2026-10-16",
           "start": "09:00",
           "end": "14:00",
           "open": true,
@@ -60,6 +60,14 @@
         },
         {
           "date": "2026-10-25",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        },
+        {
+          "date": "2026-10-31",
           "start": "09:00",
           "end": "14:00",
           "open": true,
