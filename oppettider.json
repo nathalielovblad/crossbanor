@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "banor": [
     {
       "id": "uringe",
@@ -17,7 +17,16 @@
       "id": "arlanda",
       "name": "Arlanda MC",
       "url": "https://www.arlandamc.se/traningstider/",
-      "events": []
+      "events": [
+        {
+          "date": "2026-11-07",
+          "start": "09:00",
+          "end": "14:00",
+          "open": true,
+          "title": "09:00 - 14:00",
+          "source": "arlandamc.se"
+        }
+      ]
     },
     {
       "id": "varmdo",
